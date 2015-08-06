@@ -20,8 +20,7 @@ import static com.globalmentor.java.CharSequences.*;
 import static com.globalmentor.java.Objects.*;
 
 import static com.globalmentor.java.Characters.*;
-import com.globalmentor.java.Integers;
-import com.globalmentor.java.Objects;
+import com.globalmentor.java.*;
 import com.globalmentor.math.Luhn;
 import com.globalmentor.text.ArgumentSyntaxException;
 
