@@ -17,12 +17,13 @@
 package com.globalmentor.iso.idcard;
 
 import static com.globalmentor.java.CharSequences.*;
-import static com.globalmentor.java.Objects.*;
 
 import static com.globalmentor.java.Characters.*;
 import com.globalmentor.java.*;
 import com.globalmentor.math.Luhn;
 import com.globalmentor.text.ArgumentSyntaxException;
+
+import static java.util.Objects.*;
 
 /**
  * Primary Account Number (PAN) of an identification card as defined in ISO/IEC 7812-1:2000(E),
@@ -148,7 +149,7 @@ public class PAN implements Comparable<PAN> {
 	 *           and/or if the components do not match the ending check digit.
 	 */
 	public PAN(final CharSequence pan) throws ArgumentSyntaxException {
-		this(checkMinLength(checkInstance(pan, "Primary account number cannot be null."), MIN_PAN_LENGTH).subSequence(0, IIN_LENGTH), //split out the individual components
+		this(checkMinLength(requireNonNull(pan, "Primary account number cannot be null."), MIN_PAN_LENGTH).subSequence(0, IIN_LENGTH), //split out the individual components
 				pan.subSequence(IIN_LENGTH, pan.length() - 1), pan.charAt(pan.length() - 1));
 	}
 
@@ -165,14 +166,14 @@ public class PAN implements Comparable<PAN> {
 	 * @throws ArgumentSyntaxException if the provided check digit is not the appropriate check digit for this primary account number.
 	 */
 	public PAN(final CharSequence iin, final CharSequence iai, final char checkDigit) throws ArgumentSyntaxException {
-		checkInstance(iin, "IIN cannot be null.");
+		requireNonNull(iin, "IIN cannot be null.");
 		if(!isLatinDigits(iin)) { //if the IIN is not solely latin digits
 			throw new ArgumentSyntaxException("IIN must be composed entirely of Latin digits: " + iin);
 		}
 		if(iin.length() != IIN_LENGTH) { //if the IIN is not six digits long
 			throw new ArgumentSyntaxException("IIN must be six digits in length: " + iin);
 		}
-		checkInstance(iai, "Individual account identification cannot be null.");
+		requireNonNull(iai, "Individual account identification cannot be null.");
 		if(!isLatinDigits(iai)) { //if the individual account identification is not solely latin digits
 			throw new ArgumentSyntaxException("IIN must be composed entirely of Latin digits: " + iin);
 		}
