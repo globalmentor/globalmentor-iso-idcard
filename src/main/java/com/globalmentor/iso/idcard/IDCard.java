@@ -38,7 +38,7 @@ public class IDCard {
 	 * @throws NullPointerException if the given PAN is <code>null</code>.
 	 */
 	public static final Product getProduct(final PAN pan) {
-		final Integer iin = new Integer(pan.getIIN()); //get the PAN as an Integer
+		final Integer iin = Integer.valueOf(pan.getIIN()); //get the PAN as an Integer
 		for(final NameValuePair<Range<Integer>, Product> iinRangeProduct : iinRangeProducts) { //for each product range
 			if(iinRangeProduct.getName().contains(iin)) { //if the IIN is in this range
 				return iinRangeProduct.getValue(); //return the product
@@ -49,23 +49,23 @@ public class IDCard {
 
 	/** Initializes the product IIN ranges. */
 	static {
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(352800), new Integer(358999)), Product.JCB)); //JCB (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(370000), new Integer(379999)), Product.AMERICAN_EXPRESS)); //American Express (http://www125.americanexpress.com/merchant/oam/resources/POS499.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(490303), new Integer(490303)), Product.MAESTRO)); //UK Maestro (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(493698), new Integer(493699)), Product.MAESTRO)); //UK Maestro (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)		
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(400000), new Integer(499999)), Product.VISA)); //Visa (http://www125.americanexpress.com/merchant/oam/resources/POS499.pdf) (note conflict with 490303 and 493698-99 UK Maestro ranges)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(500000), new Integer(509999)), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)		
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(510000), new Integer(559999)), Product.MASTERCARD)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(560000), new Integer(589999)), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(601100), new Integer(601199)), Product.DISCOVER)); //Discover (http://www.discoverbiz.com/resources/data/card_present.html)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633450), new Integer(633460)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)	
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633462), new Integer(633472)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633474), new Integer(633475)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633477), new Integer(633477)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633479), new Integer(633480)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633482), new Integer(633489)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(633498), new Integer(633498)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(676700), new Integer(676799)), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
-		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(new Integer(600000), new Integer(699999)), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf) (note conflict with Discover and Solo ranges)				
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(352800, 358999), Product.JCB)); //JCB (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(370000, 379999), Product.AMERICAN_EXPRESS)); //American Express (http://www125.americanexpress.com/merchant/oam/resources/POS499.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(490303, 490303), Product.MAESTRO)); //UK Maestro (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(493698, 493699), Product.MAESTRO)); //UK Maestro (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)		
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(400000, 499999), Product.VISA)); //Visa (http://www125.americanexpress.com/merchant/oam/resources/POS499.pdf) (note conflict with 490303 and 493698-99 UK Maestro ranges)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(500000, 509999), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)		
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(510000, 559999), Product.MASTERCARD)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(560000, 589999), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(601100, 601199), Product.DISCOVER)); //Discover (http://www.discoverbiz.com/resources/data/card_present.html)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633450, 633460), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)	
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633462, 633472), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633474, 633475), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633477, 633477), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633479, 633480), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633482, 633489), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(633498, 633498), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(676700, 676799), Product.SOLO)); //Solo (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf)
+		iinRangeProducts.add(new NameValuePair<Range<Integer>, Product>(new Range<Integer>(600000, 699999), Product.MAESTRO)); //MasterCard (http://www.barclaycardmerchantservices.co.uk/existing_customers/operational/pdf/binranges.pdf) (note conflict with Discover and Solo ranges)				
 	}
 }
