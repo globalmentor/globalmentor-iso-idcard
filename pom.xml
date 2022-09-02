@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>globalmentor-iso-idcard</artifactId>
-	<version>0.6.1</version>
+	<version>0.6.2-SNAPSHOT</version>
 
 	<name>GlobalMentor ISO Identity Card</name>
 	<description>GlobalMentor Java ISO Identity Card library.</description>
