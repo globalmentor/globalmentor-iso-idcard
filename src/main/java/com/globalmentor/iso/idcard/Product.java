@@ -1,11 +1,11 @@
 /*
- * Copyright © 1996-2008 GlobalMentor, Inc. <http://www.globalmentor.com/>
+ * Copyright © 1996-2008 GlobalMentor, Inc. <https://www.globalmentor.com/>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,14 +33,14 @@ public enum Product {
 
 	/**
 	 * American Express card.
-	 * @see <a href="http://www.americanexpress.com/">American Express</a>
+	 * @see <a href="https://www.americanexpress.com/">American Express</a>
 	 * @see <a href="http://www125.americanexpress.com/merchant/oam/resources/FPHANDcvr.pdf">American Express Fraud Prevention Handbook</a>
 	 */
 	AMERICAN_EXPRESS(15),
 
 	/**
 	 * Discover card.
-	 * @see <a href="http://www.discovercard.com/discover/">Discover Card</a>
+	 * @see <a href="https://www.discover.com/">Discover Card</a>
 	 */
 	DISCOVER(16),
 
@@ -52,7 +52,7 @@ public enum Product {
 
 	/**
 	 * MasterCard.
-	 * @see <a href="http://www.mastercard.com/">MasterCard International</a>
+	 * @see <a href="https://www.mastercard.us/">MasterCard International</a>
 	 */
 	MASTERCARD(16),
 
@@ -74,7 +74,7 @@ public enum Product {
 
 	/**
 	 * Visa card.
-	 * @see <a href="http://www.visa.com/">Visa International</a>
+	 * @see <a href="https://www.visa.com/">Visa International</a>
 	 */
 	VISA(16);
 
