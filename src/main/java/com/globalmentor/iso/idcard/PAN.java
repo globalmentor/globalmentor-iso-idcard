@@ -18,16 +18,15 @@ package com.globalmentor.iso.idcard;
 
 import static com.globalmentor.java.CharSequences.*;
 
-import static com.globalmentor.java.Characters.*;
 import com.globalmentor.java.*;
 import com.globalmentor.math.Luhn;
+import com.globalmentor.text.ASCII;
 import com.globalmentor.text.ArgumentSyntaxException;
-
 import static java.util.Objects.*;
 
 /**
- * Primary Account Number (PAN) of an identification card as defined in ISO/IEC 7812-1:2000(E),
- * "Identification cards — Identification of issuers — Part 1: Numbering system".
+ * Primary Account Number (PAN) of an identification card as defined in ISO/IEC 7812-1:2000(E), "Identification cards — Identification of issuers — Part 1:
+ * Numbering system".
  * @see <a href="http://en.wikipedia.org/wiki/ISO_7812">Wikipedia: ISO 7812</a>
  * @author Garret Wilson
  */
@@ -68,7 +67,7 @@ public class PAN implements Comparable<PAN> {
 		return Integers.toString(getIIN(), 10, IIN_LENGTH);
 	}
 
-	/** The original length of the individual acount identification. */
+	/** The original length of the individual account identification. */
 	private final int individualAccountIDLength;
 
 	/** The individual account identification. */
@@ -167,20 +166,20 @@ public class PAN implements Comparable<PAN> {
 	 */
 	public PAN(final CharSequence iin, final CharSequence iai, final char checkDigit) throws ArgumentSyntaxException {
 		requireNonNull(iin, "IIN cannot be null.");
-		if(!isLatinDigits(iin)) { //if the IIN is not solely latin digits
+		if(!containsOnly(iin, ASCII.DIGIT_CHARACTERS)) { //if the IIN is not solely latin digits
 			throw new ArgumentSyntaxException("IIN must be composed entirely of Latin digits: " + iin);
 		}
 		if(iin.length() != IIN_LENGTH) { //if the IIN is not six digits long
 			throw new ArgumentSyntaxException("IIN must be six digits in length: " + iin);
 		}
 		requireNonNull(iai, "Individual account identification cannot be null.");
-		if(!isLatinDigits(iai)) { //if the individual account identification is not solely latin digits
+		if(!containsOnly(iai, ASCII.DIGIT_CHARACTERS)) { //if the individual account identification is not solely latin digits
 			throw new ArgumentSyntaxException("IIN must be composed entirely of Latin digits: " + iin);
 		}
 		if(iai.length() > MAX_IAD_LENGTH) { //if the individual account identification is over 12 digits long
 			throw new ArgumentSyntaxException("IIN must be six digits in length: " + iin);
 		}
-		if(!isLatinDigit(checkDigit)) { //if the check digit is not a Latin digit
+		if(!ASCII.DIGIT_CHARACTERS.contains(checkDigit)) { //if the check digit is not a Latin digit
 			throw new ArgumentSyntaxException("Check digit " + checkDigit + " must be a Latin digit.");
 		}
 		final String baseDigits = new StringBuilder().append(iin).append(iai).toString(); //get the base digits to checksum
@@ -194,7 +193,7 @@ public class PAN implements Comparable<PAN> {
 		this.individualAccountID = Integer.parseInt(iaiString); //save the individual account identification
 		this.checkDigit = checkDigit - '0'; //save the check digit value
 		this.value = Long.parseLong(toString()); //save the long value of the PAN
-		this.hashCode = Objects.getIntHashCode(getIIN(), getIndividualAccountID()); //a PAN is uniquely identified by its IIN and IAI
+		this.hashCode = hash(getIIN(), getIndividualAccountID()); //a PAN is uniquely identified by its IIN and IAI
 	}
 
 	/** @return A hash code representing this object. */
